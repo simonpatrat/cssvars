@@ -1,0 +1,41 @@
+@import "./variables";
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-size: 1rem;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: var(--color-text);
+    padding-bottom: $footer-height;
+}
+
+a {
+    color: var(--color-links);
+}
+
+.container {
+    width: 95%;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    &--large {
+        max-width: 1920px;
+    }
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: var(--color-text);
+    color: #fff;
+    height: $footer-height;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

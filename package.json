@@ -1,0 +1,15 @@
+{
+  "name": "cssvars",
+  "version": "1.0.0",
+  "description": "Petit projet utilisant cssvars et webcomponents",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm run build && parcel src/index.html",
+    "build": "parcel build src/javascript/index.js"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.5"
+  }
+}
