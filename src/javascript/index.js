@@ -1,7 +1,4 @@
-import ComponentExample from './components/ComponentExample';
+import './components/ComponentExample';
 
-(function(){
-    console.log('Hello! Je suis le javacript principal.');
-    console.log('\n');
-    ComponentExample();
-})();
+console.log('Hello! Je suis le javascript principal.');
+console.log('\n');
