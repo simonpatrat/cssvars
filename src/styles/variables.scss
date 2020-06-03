@@ -11,4 +11,6 @@ $footer-height: 80px;
     --color-text: #{$color-grey-dark};
     --color-primary: #{$color-red};
     --color-links: var(--color-primary);
+    // Web Components:
+    --color-custom-button-bg: var(--color-primary);
 }
