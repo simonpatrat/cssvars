@@ -3,7 +3,6 @@
 $color-grey-dark: #222f3e;
 $color-red: #ff6b6b;
 
-
 $footer-height: 80px;
 
 // root variables
@@ -13,4 +12,6 @@ $footer-height: 80px;
     --color-links: var(--color-primary);
     // Web Components:
     --color-custom-button-bg: var(--color-primary);
+
+    --animation-speed: 1000ms;
 }
