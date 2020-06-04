@@ -25,7 +25,7 @@ class ButtonComponentNoShadow extends HTMLElement {
                     border-radius: 20px;
                     border: none;
                     min-width: 120px;
-                    animation: var(--primary-animation) 5s infinite;
+                    animation: var(--primary-animation) var(--animation-speed) infinite;
                 }
             </style>
             <button class="animation">Click me</button>
