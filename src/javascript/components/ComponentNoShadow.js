@@ -1,18 +1,10 @@
-class ButtonComponent extends HTMLElement {
+class ButtonComponentNoShadow extends HTMLElement {
     constructor() {
         super();
         this.handleClick = this.handleClick.bind(this);
-        this.initElement();
+        this.innerHTML = this.getTemplate();
         this.savedColor = document.documentElement.style.getPropertyValue('--color-primary');
         this.currentColor = null;
-    }
-
-    initElement() {
-        this.template = document.createElement('template');
-        this.template.innerHTML = this.getTemplate();
-        let shadowRoot = this.attachShadow({mode: 'open'});
-        shadowRoot.appendChild(this.template.content.cloneNode(true));
-
     }
 
     connectedCallback() {
@@ -33,7 +25,7 @@ class ButtonComponent extends HTMLElement {
                     border-radius: 20px;
                     border: none;
                     min-width: 120px;
-                    animation: primary-animation 5s infinite;
+                    animation: var(--primary-animation) 5s infinite;
                 }
             </style>
             <button class="animation">Click me</button>
@@ -45,13 +37,11 @@ class ButtonComponent extends HTMLElement {
     }
 
     attachListeners() {
-        const { shadowRoot } = this;
-        shadowRoot.querySelector('button').addEventListener('click', this.handleClick);
+        this.querySelector('button').addEventListener('click', this.handleClick);
     }
 
     detachListeners() {
-        const { shadowRoot } = this;
-        shadowRoot.querySelector('button').removeEventListener('click', this.handleClick);
+        this.querySelector('button').removeEventListener('click', this.handleClick);
     }
 
     handleClick(event) {
@@ -66,4 +56,4 @@ class ButtonComponent extends HTMLElement {
 
 }
 
-window.customElements.define('custom-button', ButtonComponent);
+window.customElements.define('custom-button-no-shadow', ButtonComponentNoShadow);
