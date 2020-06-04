@@ -4,7 +4,6 @@ $color-grey-dark: #222f3e;
 $color-red: #ff6b6b;
 $primary-animaton: 'primary-animation';
 
-
 $footer-height: 80px;
 
 // root variables
@@ -16,4 +15,5 @@ $footer-height: 80px;
     --color-custom-button-bg: var(--color-primary);
     // Animation
     --primary-animation: #{$primary-animaton};
+    --animation-speed: 1000ms;
 }

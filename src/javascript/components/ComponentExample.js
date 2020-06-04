@@ -1,10 +1,24 @@
 class ButtonComponent extends HTMLElement {
     constructor() {
         super();
+        const defaults = {
+            type: 'decrease',
+        }
+        const options = JSON.parse(this.dataset.options);
+
+        this.settings = {
+            ...defaults,
+            ...options,
+        };
+
         this.handleClick = this.handleClick.bind(this);
-        this.initElement();
-        this.savedColor = document.documentElement.style.getPropertyValue('--color-primary');
+        this.savedColor = window.getComputedStyle(document.documentElement)
+        .getPropertyValue('--color-primary');
         this.currentColor = null;
+        this.currentAnimationSpeed = 0;
+
+        this.initElement();
+
     }
 
     initElement() {
@@ -12,7 +26,6 @@ class ButtonComponent extends HTMLElement {
         this.template.innerHTML = this.getTemplate();
         let shadowRoot = this.attachShadow({mode: 'open'});
         shadowRoot.appendChild(this.template.content.cloneNode(true));
-
     }
 
     connectedCallback() {
@@ -33,10 +46,11 @@ class ButtonComponent extends HTMLElement {
                     border-radius: 20px;
                     border: none;
                     min-width: 120px;
-                    animation: primary-animation 5s infinite;
+                    transition: all 300ms ease;
                 }
+
             </style>
-            <button class="animation">Click me</button>
+            <button class="animation">${this.settings.type}</button>
         `;
     }
 
@@ -54,7 +68,7 @@ class ButtonComponent extends HTMLElement {
         shadowRoot.querySelector('button').removeEventListener('click', this.handleClick);
     }
 
-    handleClick(event) {
+    changeColor() {
         if (this.currentColor  === 'blue') {
             document.documentElement.style.setProperty('--color-primary', this.savedColor);
             this.currentColor = this.savedColor;
@@ -62,6 +76,37 @@ class ButtonComponent extends HTMLElement {
             document.documentElement.style.setProperty('--color-primary', 'blue');
             this.currentColor = 'blue';
         }
+    }
+
+    updateAnimationSpeed() {
+        const { type: buttonType } = this.settings;
+        const currentSpeed = parseInt(
+            window.getComputedStyle(document.documentElement)
+                 .getPropertyValue('--animation-speed')
+                 .replace(/ms/gi, '')
+         );
+
+         let newSpeed = 0;
+         if (buttonType === 'increase') {
+             newSpeed = currentSpeed > 200 ? currentSpeed - 100 : currentSpeed;
+         } else if (buttonType === 'decrease') {
+             newSpeed = currentSpeed < 5000 ? currentSpeed + 100 : currentSpeed;
+         }
+
+         this.currentAnimationSpeed = newSpeed;
+         document.documentElement.style.setProperty('--animation-speed', `${this.currentAnimationSpeed}ms`);
+    }
+
+    handleClick(event) {
+
+        const { type: buttonType } = this.settings;
+
+        if (buttonType === 'change-color') {
+            this.changeColor();
+        } else {
+            this.updateAnimationSpeed();
+        }
+
     }
 
 }
