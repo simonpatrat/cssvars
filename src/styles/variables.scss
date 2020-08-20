@@ -2,7 +2,7 @@
 // colors from https://flatuicolors.com/palette/ca
 $color-grey-dark: #222f3e;
 $color-red: #ff6b6b;
-
+$primary-animaton: 'primary-animation';
 
 $footer-height: 80px;
 
@@ -11,4 +11,9 @@ $footer-height: 80px;
     --color-text: #{$color-grey-dark};
     --color-primary: #{$color-red};
     --color-links: var(--color-primary);
+    // Web Components:
+    --color-custom-button-bg: var(--color-primary);
+    // Animation
+    --primary-animation: #{$primary-animaton};
+    --animation-speed: 1000ms;
 }
